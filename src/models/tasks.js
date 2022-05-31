@@ -1,6 +1,6 @@
 import { TaskModel } from "./task";
 
-export function getTaskList() {
+export async function getTaskList() {
     const TASKLIST = [
         {
             id: TaskModel.generateId(),
