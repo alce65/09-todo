@@ -3,21 +3,24 @@ import { Add } from '../components/home/add';
 import { List } from '../components/home/list';
 import { TaskCounter } from '../components/home/task-counter';
 import { TaskModel } from '../models/task';
-import { getTaskList } from '../models/tasks';
+import { StoreClass } from '../services/store.tasks';
 
 export function HomePage() {
     const initialState: Array<TaskModel> = [];
     const [tasks, setTasks] = useState(initialState);
     const [tasksCompleted, setTasksCompleted] = useState(0);
 
+    const store = new StoreClass();
+
     useEffect(() => {
         console.log('Use effect carga');
-        getTaskList().then((data) => setTasks(data));
+        store.getTasks().then((data) => setTasks(data));
     }, []);
 
     useEffect(() => {
         console.log('Use efffect contador');
         setTasksCompleted(tasks.filter((task) => task.isCompleted).length);
+        store.setTasks(tasks);
     }, [tasks]);
 
     const addTask = (task: TaskModel) => {
