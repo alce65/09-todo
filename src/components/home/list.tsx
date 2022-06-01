@@ -1,6 +1,15 @@
-import { Task } from "./task";
+import { TaskModel } from '../../models/task';
+import { Task } from './task';
 
-export function List({ tasks, toggleComplete, deleteTask }) {
+export function List({
+    tasks,
+    toggleComplete,
+    deleteTask,
+}: {
+    tasks: Array<TaskModel>;
+    toggleComplete(id: TaskModel['id']): void;
+    deleteTask(id: TaskModel['id']): void;
+}) {
     return (
         <ul>
             {tasks.map((task) => (
@@ -15,4 +24,3 @@ export function List({ tasks, toggleComplete, deleteTask }) {
         </ul>
     );
 }
-

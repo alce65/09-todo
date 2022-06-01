@@ -1,4 +1,14 @@
-export function Task({ task, toggleComplete, deleteTask }) {
+import { TaskModel } from '../../models/task';
+
+export function Task({
+    task,
+    toggleComplete,
+    deleteTask,
+}: {
+    task: TaskModel;
+    toggleComplete(id: TaskModel['id']): void;
+    deleteTask(id: TaskModel['id']): void;
+}) {
     const handleChange = () => {
         toggleComplete(task.id);
     };
@@ -9,7 +19,7 @@ export function Task({ task, toggleComplete, deleteTask }) {
 
     return (
         <>
-            <h2>{task.title}</h2>
+            <h3>{task.title}</h3>
             <p>{task.responsible}</p>
             <label htmlFor="completed">Completed</label>
             <input
@@ -23,4 +33,3 @@ export function Task({ task, toggleComplete, deleteTask }) {
         </>
     );
 }
-

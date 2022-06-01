@@ -1,25 +1,26 @@
-import { useState } from "react";
-import { TaskModel } from "../models/task";
-export function Add({ addTask }) {
-    const users = ["Pepe", "Elena", "Juan", "Luisa"];
+import { SyntheticEvent, useState } from 'react';
+import { TaskModel } from '../../models/task';
+export function Add({ addTask }: { addTask(task: TaskModel): void }) {
+    const users = ['Pepe', 'Elena', 'Juan', 'Luisa'];
 
     const [formData, setFormData] = useState({
-        title: "",
-        responsible: "",
+        title: '',
+        responsible: '',
         isOk: false,
-        importance: "",
+        importance: '',
     });
 
-    function handleSubmit(ev) {
+    function handleSubmit(ev: SyntheticEvent) {
         ev.preventDefault();
-        console.log("Guardando", formData);
+        console.log('Guardando', formData);
         addTask(new TaskModel(formData.title, formData.responsible));
     }
 
-    function handleChange(ev) {
+    function handleChange(ev: SyntheticEvent) {
+        const element = ev.target as HTMLFormElement;
         const value =
-            ev.target.type === "checkbox" ? ev.target.checked : ev.target.value;
-        setFormData({ ...formData, [ev.target.name]: value });
+            element.type === 'checkbox' ? element.checked : element.value;
+        setFormData({ ...formData, [element.name]: value });
     }
 
     return (
