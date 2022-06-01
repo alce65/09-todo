@@ -91,3 +91,5 @@ export function FormPage() {
         </>
     );
 }
+
+export default FormPage;
