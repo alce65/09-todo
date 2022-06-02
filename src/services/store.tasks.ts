@@ -1,5 +1,5 @@
 import { TaskModel } from '../models/task';
-import { getTaskList } from '../models/tasks';
+import { getTaskList } from '../data/tasks';
 
 export class StoreClass {
     store: string;

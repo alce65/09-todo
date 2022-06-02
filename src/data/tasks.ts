@@ -1,4 +1,4 @@
-import { TaskModel } from './task';
+import { TaskModel } from '../models/task';
 
 export async function getTaskList(): Promise<Array<TaskModel>> {
     return [

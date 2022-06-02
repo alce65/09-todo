@@ -11,11 +11,13 @@ import * as React from 'react';
 
 function App() {
     const HomePage = React.lazy(() => import('./pages/home'));
+    const GotPage = React.lazy(() => import('./pages/got'));
     const FormPage = React.lazy(() => import('./pages/form'));
 
     const options: aMenuItems = [
         { path: '', label: 'Tasks', page: <HomePage /> },
         { path: 'user', label: 'Users', page: <FormPage /> },
+        { path: 'got', label: 'GoT', page: <GotPage /> },
         { path: '*', label: '', page: <Navigate replace to="" /> },
     ];
 
@@ -26,7 +28,11 @@ function App() {
                 <React.Suspense>
                     <Routes>
                         {options.map((item) => (
-                            <Route path={item.path} element={item.page}></Route>
+                            <Route
+                                key={item.label}
+                                path={item.path}
+                                element={item.page}
+                            ></Route>
                         ))}
                     </Routes>
                 </React.Suspense>
