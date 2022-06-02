@@ -14,11 +14,13 @@ function App() {
     const HomePage = React.lazy(() => import('./pages/home'));
     const GotPage = React.lazy(() => import('./pages/got'));
     const FormPage = React.lazy(() => import('./pages/form'));
+    const TodoPage = React.lazy(() => import('./pages/todo.context'));
 
     const options: aMenuItems = [
-        { path: '', label: 'Tasks', page: <HomePage /> },
+        { path: '', label: 'Home - Todo', page: <HomePage /> },
         { path: 'user', label: 'Users', page: <FormPage /> },
         { path: 'got', label: 'GoT', page: <GotPage /> },
+        { path: 'tasks', label: 'Tasks - Context', page: <TodoPage /> },
         { path: '*', label: '', page: <Navigate replace to="" /> },
     ];
 
