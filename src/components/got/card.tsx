@@ -6,26 +6,25 @@ import { Luchador } from '../../models/luchador';
 import { Rey } from '../../models/rey';
 import { SyntheticEvent } from 'react';
 
-// import { Comunications } from './comunicaciones.js';
-
 export function Card({ personaje }: { personaje: Personaje }) {
     function handleClick(ev: SyntheticEvent) {
-        /* if ((<Element>ev.target).textContent === 'habla') {
+        let element = ev.target as Element;
+        if (element.textContent === 'habla') {
             console.log(personaje.comunicar());
             const selector = '.comunications';
-            const element = <Element>document.querySelector(selector);
-            element.classList.toggle('on');
-            new Comunications(personaje, selector);
-            setTimeout(() => {
-                element.classList.toggle('on');
-                element.innerHTML = '';
-            }, 2000);
+            // const element = <Element>document.querySelector(selector);
+            // element.classList.toggle('on');
+            // new Comunications(personaje, selector);
+            // setTimeout(() => {
+            //     element.classList.toggle('on');
+            //     element.innerHTML = '';
+            // }, 2000);
         } else {
             console.log('Muerooo', personaje.nombre);
             personaje.morir();
-            this.template = this.createTemplate();
-            this.outRender(`.{personaje.nombre}`);
-        } */
+            // </Element>this.template = this.createTemplate();
+            // </Element>this.outRender(`.{personaje.nombre}`);
+        }
     }
 
     let templateOptional: JSX.Element = <></>;
