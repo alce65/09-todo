@@ -1,7 +1,9 @@
-import { SyntheticEvent, useState } from 'react';
+import { SyntheticEvent, useState, useContext } from 'react';
+import { TodoContext } from '../../context/todo-context';
 import { TaskModel } from '../../models/task';
-export function Add({ addTask }: { addTask(task: TaskModel): void }) {
+export function Add() {
     const users = ['Pepe', 'Elena', 'Juan', 'Luisa'];
+    const { addTask } = useContext(TodoContext);
 
     const [formData, setFormData] = useState({
         title: '',

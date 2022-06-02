@@ -9,6 +9,7 @@ import { Layer } from './components/core/layer';
 import { aMenuItems } from './interfaces/menu-items';
 import * as React from 'react';
 import { GotContextProvider } from './context/got-provider';
+import { TodoContextProvider } from './context/todo-provider';
 
 function App() {
     const HomePage = React.lazy(() => import('./pages/home'));
@@ -30,15 +31,17 @@ function App() {
             <Layer options={options}>
                 <React.Suspense>
                     <GotContextProvider>
-                        <Routes>
-                            {options.map((item) => (
-                                <Route
-                                    key={item.label}
-                                    path={item.path}
-                                    element={item.page}
-                                ></Route>
-                            ))}
-                        </Routes>
+                        <TodoContextProvider>
+                            <Routes>
+                                {options.map((item) => (
+                                    <Route
+                                        key={item.label}
+                                        path={item.path}
+                                        element={item.page}
+                                    ></Route>
+                                ))}
+                            </Routes>
+                        </TodoContextProvider>
                     </GotContextProvider>
                 </React.Suspense>
             </Layer>

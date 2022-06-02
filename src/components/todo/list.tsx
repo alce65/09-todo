@@ -1,15 +1,10 @@
-import { TaskModel } from '../../models/task';
+import { useContext } from 'react';
+import { TodoContext } from '../../context/todo-context';
 import { Task } from './task';
 
-export function List({
-    tasks,
-    toggleComplete,
-    deleteTask,
-}: {
-    tasks: Array<TaskModel>;
-    toggleComplete(id: TaskModel['id']): void;
-    deleteTask(id: TaskModel['id']): void;
-}) {
+export function List() {
+    const { tasks, deleteTask, toggleComplete } = useContext(TodoContext);
+
     return (
         <>
             <p>Context-list</p>
