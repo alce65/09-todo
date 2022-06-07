@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { TodoContext } from './todo-context';
 import { TaskModel } from '../models/task';
 import { HttpStoreTasks } from '../services/http.store.task';
@@ -8,18 +8,17 @@ export function TodoContextProvider({ children }: { children: ReactElement }) {
     const initialState: Array<TaskModel> = [];
     const [tasks, setTasks] = useState(initialState);
 
-    const apiTasks = new HttpStoreTasks();
+    const apiTasks = useMemo(() => new HttpStoreTasks(), []);
     const [tasksCompleted, setTasksCompleted] = useState(0);
 
     useEffect(() => {
         console.log('Use effect carga');
         apiTasks.getTasks().then((data) => setTasks(data));
-    }, []);
+    }, [apiTasks]);
 
     useEffect(() => {
         console.log('Use efffect contador');
         setTasksCompleted(tasks.filter((task) => task.isCompleted).length);
-        /// store.setTasks(tasks);
     }, [tasks]);
 
     const addTask = async (task: TaskModel) => {
@@ -37,6 +36,8 @@ export function TodoContextProvider({ children }: { children: ReactElement }) {
         apiTasks
             .updateTask(tasks.find((item) => +item.id === +id) as TaskModel)
             .then(() => {
+                console.log({ id });
+                console.log(tasks);
                 const updatedTasks = tasks.map((task) =>
                     task.id === id
                         ? { ...task, isCompleted: !task.isCompleted }
