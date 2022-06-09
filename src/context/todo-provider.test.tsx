@@ -67,6 +67,7 @@ describe('Given the context ', () => {
             let element = screen.getByText(/Probando contexto/i);
             expect(element).toBeInTheDocument();
             expect(HttpStoreTasks.prototype.getTasks).toHaveBeenCalled();
+
             element = await screen.findByText(/Task1/i);
             expect(element).toBeInTheDocument();
         });
