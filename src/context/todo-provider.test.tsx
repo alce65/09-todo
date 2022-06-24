@@ -1,4 +1,4 @@
-import { render, screen, act } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { useContext } from 'react';
 import { TodoContext } from './todo-context';
 import { TodoContextProvider } from './todo-provider';
@@ -110,7 +110,7 @@ describe('Given the context ', () => {
                     <TestComponent></TestComponent>
                 </TodoContextProvider>
             );
-            userEvent.click(screen.getByText(/Delete Task/i));
+            userEvent.click(await screen.findByText(/Delete Task/i));
             expect(HttpStoreTasks.prototype.deleteTask).toHaveBeenCalled();
         });
     });
